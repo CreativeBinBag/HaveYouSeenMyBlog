@@ -1,0 +1,43 @@
+---
+title: "Media Test"
+date: "2025-01-05"
+description: "Testing the visual capabilities of the new system architecture."
+tags: ["Art", "Meta"]
+---
+
+I've updated the site engine to handle rich media.
+
+## Polaroid
+
+I wanted images to feel like they were physically taped to this digital graph paper.
+
+<Polaroid
+  src="/avatar.jpg"
+  alt="My pixel avatar"
+  caption="Fig 1. Self-Portrait in 8-bit."
+  rotate="-2"
+/>
+
+You can stack them or rotate them differently to create a messy desk vibe.
+
+<div class="grid md:grid-cols-2 gap-4">
+  <Polaroid
+    src="/onion-dark.png"
+    alt="Dark Mode Onion"
+    caption="The Dark Onion"
+    rotate="2"
+  />
+  <Polaroid
+    src="/onion-light.png"
+    alt="Light Mode Onion"
+    caption="The Light Onion"
+    rotate="-1"
+  />
+</div>
+
+For moving pictures, I didn't want a standard YouTube embed. It needed to feel like a CRT monitor feed.
+
+<RetroVideo
+  src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+  caption="Sample Footage: Nature Simulation v1.0"
+/>

@@ -1,0 +1,99 @@
+---
+import "@fontsource/vt323";
+import "@fontsource/ibm-plex-serif";
+import OnionToggle from "../components/OnionToggle";
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title} | Nafisa Shamim Rafa</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"
+    />
+
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+
+    <style>
+      .graph-paper {
+        background-size: 40px 40px;
+        background-image:
+          linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+      }
+      .dark .graph-paper {
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          );
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gba-light dark:bg-gba-dark text-gba-text dark:text-gba-cream font-serif min-h-screen transition-colors duration-300"
+  >
+    <div class="fixed inset-0 pointer-events-none graph-paper z-0"></div>
+
+    <div class="relative z-10 flex flex-col min-h-screen">
+      <nav
+        class="w-full max-w-4xl mx-auto p-6 flex justify-between items-end border-b-4 border-dashed border-gba-text/20 dark:border-p-mint/30 mb-12"
+      >
+        <div>
+          <h1
+            class="font-pixel text-5xl mb-0 leading-none tracking-wide text-gba-text dark:text-white"
+          >
+            NAFISA<span class="text-p-pink">.</span>SHAMIM<span
+              class="text-p-mint">.</span
+            >RAFA
+          </h1>
+          <p class="font-pixel text-xl text-gray-500 dark:text-p-blue mt-1">
+            Quantum<span class="mx-2">::</span>Algorithms<span class="mx-2"
+              >::</span
+            >Art
+          </p>
+        </div>
+        <OnionToggle client:load />
+      </nav>
+
+      <main class="w-full max-w-4xl mx-auto p-6 flex-grow">
+        <slot />
+      </main>
+
+      <footer
+        class="text-center font-pixel text-gray-400 py-12 mt-12 border-t-4 border-dashed border-gba-text/10 dark:border-white/10"
+      >
+        <p>// Built with 🧅 & Astro</p>
+      </footer>
+    </div>
+  </body>
+</html>

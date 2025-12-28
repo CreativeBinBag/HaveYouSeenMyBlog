@@ -1,0 +1,18 @@
+---
+const { class: className } = Astro.props;
+---
+
+<div
+  class={`relative p-6 border-4 border-gray-900 dark:border-p-mint bg-white dark:bg-[#363645] shadow-pixel-md ${className}`}
+>
+  <div class="absolute -top-1 -left-1 w-2 h-2 bg-bg-light dark:bg-bg-dark">
+  </div>
+  <div class="absolute -top-1 -right-1 w-2 h-2 bg-bg-light dark:bg-bg-dark">
+  </div>
+  <div class="absolute -bottom-1 -left-1 w-2 h-2 bg-bg-light dark:bg-bg-dark">
+  </div>
+  <div class="absolute -bottom-1 -right-1 w-2 h-2 bg-bg-light dark:bg-bg-dark">
+  </div>
+
+  <slot />
+</div>

@@ -1,0 +1,165 @@
+---
+const { src, title } = Astro.props;
+---
+
+<div class="my-8 flex justify-center gameboy-container w-full px-4 md:px-0">
+  <!-- outer shell -->
+  <div
+    class="bg-indigo-500 p-4 rounded-b-xl rounded-t-lg shadow-pixel-lg inline-block relative w-full max-w-[600px]"
+  >
+    <!-- Screen bezel -->
+    <div class="bg-gray-800 p-4 rounded-md relative">
+      <div class="flex items-center gap-2 mb-2">
+        <div
+          class="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_5px_rgba(239,68,68,0.8)]"
+        >
+        </div>
+        <span class="text-xs font-pixel text-gray-400 tracking-widest"
+          >BATTERY</span
+        >
+      </div>
+
+      <!-- desktop -->
+      <div
+        class="hidden md:block relative w-full h-[400px] bg-black border-2 border-gray-700 overflow-hidden group"
+      >
+        <!-- exit -->
+        <button
+          id="exit-btn"
+          class="absolute top-4 right-4 z-50 hidden opacity-0 transform -translate-y-2 transition-all duration-300 bg-red-600 hover:bg-red-500 text-white text-xs font-pixel px-3 py-1 rounded shadow-md border-b-2 border-red-800"
+        >
+          ✖ EXIT (ESC)
+        </button>
+
+        <!-- overlay -->
+        <div
+          id="overlay"
+          class="absolute inset-0 z-20 bg-black/80 flex flex-col items-center justify-center cursor-pointer hover:bg-black/70 transition-colors"
+        >
+          <div
+            class="animate-bounce font-pixel text-2xl text-white tracking-widest border-2 border-white px-4 py-2 bg-black"
+          >
+            ▶ PRESS START
+          </div>
+          <p class="text-gray-400 font-pixel text-sm mt-4 text-center px-4">
+            Click to activate controls
+          </p>
+        </div>
+
+        <iframe
+          id="game-frame"
+          src={src}
+          title={title}
+          class="absolute top-0 left-0 w-[166.6%] h-[166.6%] border-0 z-10 origin-top-left transform scale-[0.6]"
+          loading="lazy"></iframe>
+      </div>
+
+      <!-- Mobile  -->
+      <div
+        class="block md:hidden relative w-full aspect-video bg-black border-2 border-gray-700 overflow-hidden flex flex-col items-center justify-center text-center p-6"
+      >
+        <!-- static noise -->
+        <div
+          class="absolute inset-0 opacity-10 pointer-events-none"
+          style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJnoiPjZmVUdHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZykiIG9wYWNpdHk9IjAuNCIvPjwvc3ZnPg==');"
+        >
+        </div>
+
+        <div class="font-pixel text-red-500 text-4xl mb-2">⚠ ERROR</div>
+        <p class="font-pixel text-gray-400 text-sm leading-relaxed z-10">
+          KEYBOARD INPUT REQUIRED.<br />
+          PLEASE ACCESS TERMINAL<br />VIA DESKTOP COMPUTER.
+        </p>
+
+        <!-- mobile fallback -->
+        <a
+          href={src}
+          target="_blank"
+          class="mt-4 px-4 py-2 bg-gray-800 border border-gray-600 text-p-mint font-pixel text-xs hover:bg-gray-700 z-10"
+        >
+          Try Opening in New Tab ↗
+        </a>
+      </div>
+    </div>
+
+    <div class="flex justify-between items-end mt-2 px-1">
+      <div class="font-pixel text-white/30 text-xs italic">
+        NINTENDO <span class="text-p-pink">GBA</span>
+      </div>
+      <!-- hide fullscreen button on mobile since we show the big button above -->
+      <a
+        href={src}
+        target="_blank"
+        class="hidden md:block font-pixel text-p-mint text-xs hover:underline hover:text-white transition-colors"
+      >
+        ⤢ Fullscreen
+      </a>
+    </div>
+
+    <div class="absolute bottom-6 right-6 flex gap-1">
+      <div class="w-1 h-8 bg-black/20 rounded-full transform -rotate-12"></div>
+      <div class="w-1 h-8 bg-black/20 rounded-full transform -rotate-12"></div>
+      <div class="w-1 h-8 bg-black/20 rounded-full transform -rotate-12"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const overlay = document.getElementById("overlay");
+  const frame = document.getElementById("game-frame");
+  const gameContainer = document.querySelector(".gameboy-container");
+  const exitBtn = document.getElementById("exit-btn");
+
+  const toggleGameState = (isPlaying: boolean) => {
+    if (isPlaying) {
+      document.body.style.overflow = "hidden";
+      if (overlay) overlay.style.display = "none";
+      if (frame) frame.focus();
+
+      if (exitBtn) {
+        exitBtn.classList.remove("hidden");
+        setTimeout(() => {
+          exitBtn.classList.remove("opacity-0", "-translate-y-2");
+        }, 10);
+      }
+    } else {
+      document.body.style.overflow = "";
+      if (overlay) overlay.style.display = "flex";
+      if (frame) frame.blur();
+
+      if (exitBtn) {
+        exitBtn.classList.add("opacity-0", "-translate-y-2");
+        setTimeout(() => {
+          exitBtn.classList.add("hidden");
+        }, 300);
+      }
+    }
+  };
+
+  if (overlay) {
+    overlay.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleGameState(true);
+    });
+  }
+
+  if (exitBtn) {
+    exitBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleGameState(false);
+    });
+  }
+
+  document.addEventListener("click", (e) => {
+    const target = e.target as Node;
+    if (gameContainer && target && !gameContainer.contains(target)) {
+      toggleGameState(false);
+    }
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      toggleGameState(false);
+    }
+  });
+</script>

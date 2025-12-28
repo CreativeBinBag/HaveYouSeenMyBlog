@@ -1,0 +1,30 @@
+---
+title: "Silly Goose Portfolio"
+date: "2024-07-15"
+description: "Why I decided to turn my portfolio into a GBA RPG."
+tags: ["Art", "GameDev"]
+---
+
+I built a portfolio back in July that runs entirely in the browser. Idk I just felt like doing it.
+
+## Output
+
+You can actually play it right here within the blog (but it only runs on a 'puter):
+
+<GameBoyEmbed
+  src="https://creativebinbag.github.io/Silly-Goose-Portfolio/"
+  title="Silly Goose RPG"
+/>
+
+## How it works
+
+The movement logic is grid-based. Here is a snippet of the collision detection:
+
+```javascript
+function checkCollision(x, y) {
+  if (map[y][x] === 1) {
+    return true; // Wall hit!
+  }
+  return false;
+}
+```

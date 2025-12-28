@@ -1,0 +1,18 @@
+---
+const { src, caption } = Astro.props;
+---
+
+<figure class="my-8">
+  <div
+    class="border-4 border-gba-text dark:border-p-mint bg-black p-1 shadow-pixel-md"
+  >
+    <video controls class="w-full h-auto block" src={src}></video>
+  </div>
+  {
+    caption && (
+      <figcaption class="font-pixel text-center mt-2 text-gray-500 dark:text-gray-400">
+        // {caption}
+      </figcaption>
+    )
+  }
+</figure>
