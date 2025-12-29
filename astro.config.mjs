@@ -15,6 +15,6 @@ export default defineConfig({
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
   },
-  site: 'https://CreativeBinBag.github.io',
-  base: '/HaveYouSeenMyBlog', 
+  site: 'https://creativebinbag.github.io',
+  base: '/HaveYouSeenMyBlog/', 
 });
