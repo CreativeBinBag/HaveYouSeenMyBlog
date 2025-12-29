@@ -73,9 +73,9 @@ const { title } = Astro.props;
       <nav
         class="w-full max-w-4xl mx-auto p-6 flex justify-between items-end border-b-4 border-dashed border-gba-text/20 dark:border-p-mint/30 mb-12"
       >
-        <div>
+        <div class="mr-4">
           <h1
-            class="font-pixel text-5xl mb-0 leading-none tracking-wide text-gba-text dark:text-white"
+            class="font-pixel text-3xl md:text-5xl mb-0 leading-none tracking-wide text-gba-text dark:text-white"
           >
             NAFISA<span class="text-p-pink">.</span>SHAMIM<span
               class="text-p-mint">.</span
@@ -87,9 +87,11 @@ const { title } = Astro.props;
             >Art
           </p>
         </div>
-        <OnionToggle client:load />
-      </nav>
 
+        <div class="flex-shrink-0 pb-1">
+          <OnionToggle client:load />
+        </div>
+      </nav>
       <main class="w-full max-w-4xl mx-auto p-6 flex-grow">
         <slot />
       </main>
