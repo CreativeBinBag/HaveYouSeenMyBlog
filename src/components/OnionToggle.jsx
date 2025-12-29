@@ -34,9 +34,9 @@ export default function OnionToggle() {
       aria-label="Toggle Theme"
     >
       {theme === 'dark' ? (
-        <img src="/onion-dark.png" alt="Dark Mode Onion" className="w-10 h-10 rendering-pixelated" />
+        <img src="/HaveYouSeenMyBlog/onion-dark.png" alt="Dark Mode Onion" className="w-10 h-10 rendering-pixelated" />
       ) : (
-        <img src="/onion-light.png" alt="Light Mode Onion" className="w-10 h-10 rendering-pixelated" />
+        <img src="/HaveYouSeenMyBlog/onion-light.png" alt="Light Mode Onion" className="w-10 h-10 rendering-pixelated" />
       )}
     </button>
   );
