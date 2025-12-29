@@ -1,7 +1,7 @@
 ---
 const { src, alt, caption, rotate = "2" } = Astro.props;
 const finalSrc = src.startsWith("/")
-  ? `${import.meta.env.BASE_URL}${src.substring(1)}`
+  ? `${import.meta.env.BASE_URL}${src}`
   : src;
 
 const rotationMap: Record<string, string> = {

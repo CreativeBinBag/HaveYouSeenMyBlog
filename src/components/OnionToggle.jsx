@@ -23,13 +23,13 @@ export default function OnionToggle() {
       aria-label="Toggle Theme"
     >
       <img 
-        src={`${BASE_URL}onion-light.png`} 
+        src={`${BASE_URL}/onion-light.png`} 
         alt="Light Mode Onion" 
         className="w-10 h-10 rendering-pixelated block dark:hidden absolute inset-0" 
       />
 
       <img 
-        src={`${BASE_URL}onion-dark.png`} 
+        src={`${BASE_URL}/onion-dark.png`} 
         alt="Dark Mode Onion" 
         className="w-10 h-10 rendering-pixelated hidden dark:block absolute inset-0" 
       />
