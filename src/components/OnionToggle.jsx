@@ -1,43 +1,38 @@
-import React, { useEffect, useState } from 'react';
+
+const BASE_URL = import.meta.env.BASE_URL; 
 
 export default function OnionToggle() {
-  // 1. Lazy Initializer: Read the DOM immediately to set the correct icon on first render
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    }
-    return 'dark'; // Fallback for server-side rendering
-  });
-
-  useEffect(() => {
-    // Sync React state if the external script changed something (safety check)
-    const isDark = document.documentElement.classList.contains('dark');
-    setTheme(isDark ? 'dark' : 'light');
-  }, []);
+  
 
   const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
+    const isCurrentlyDark = document.documentElement.classList.contains('dark');
     
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
+    if (isCurrentlyDark) {
       document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     }
-    localStorage.setItem('theme', newTheme);
   };
 
   return (
     <button 
       onClick={toggleTheme} 
-      className="hover:scale-110 transition-transform duration-200 focus:outline-none"
+      className="hover:scale-110 transition-transform duration-200 focus:outline-none relative w-10 h-10"
       aria-label="Toggle Theme"
     >
-      {theme === 'dark' ? (
-        <img src="/HaveYouSeenMyBlog/onion-dark.png" alt="Dark Mode Onion" className="w-10 h-10 rendering-pixelated" />
-      ) : (
-        <img src="/HaveYouSeenMyBlog/onion-light.png" alt="Light Mode Onion" className="w-10 h-10 rendering-pixelated" />
-      )}
+      <img 
+        src={`${BASE_URL}onion-light.png`} 
+        alt="Light Mode Onion" 
+        className="w-10 h-10 rendering-pixelated block dark:hidden absolute inset-0" 
+      />
+
+      <img 
+        src={`${BASE_URL}onion-dark.png`} 
+        alt="Dark Mode Onion" 
+        className="w-10 h-10 rendering-pixelated hidden dark:block absolute inset-0" 
+      />
     </button>
   );
 }

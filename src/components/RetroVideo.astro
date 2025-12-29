@@ -1,12 +1,15 @@
 ---
 const { src, caption } = Astro.props;
+const finalSrc = src.startsWith("/")
+  ? `${import.meta.env.BASE_URL}${src.substring(1)}`
+  : src;
 ---
 
 <figure class="my-8">
   <div
     class="border-4 border-gba-text dark:border-p-mint bg-black p-1 shadow-pixel-md"
   >
-    <video controls class="w-full h-auto block" src={src}></video>
+    <video controls class="w-full h-auto block" src={finalSrc}></video>
   </div>
   {
     caption && (
