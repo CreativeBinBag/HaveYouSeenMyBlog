@@ -16,5 +16,5 @@ export default defineConfig({
     rehypePlugins: [rehypeKatex],
   },
   site: 'https://creativebinbag.github.io',
-  base: '/HaveYouSeenMyBlog/', 
+  base: '/HaveYouSeenMyBlog', 
 });
