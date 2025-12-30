@@ -1,30 +1,21 @@
 ---
 title: "Silly Goose Portfolio"
 date: "2024-07-15"
-description: "Why I decided to turn my portfolio into a GBA RPG."
-tags: ["Art", "GameDev"]
+description: "I decided to turn my portfolio into a GBA RPG."
+tags: ["Portfolio", "Art", "GameDev"]
 ---
 
-I built a portfolio back in July that runs entirely in the browser. Idk I just felt like doing it.
+This was a humble attempt to create a portfolio in the form of a 2D RPG. My goal was to capture the essence of classic GBA games. Initially, I planned to use Kaboom.JS, but I decided it would be a valuable exercise to build my own game engine from scratch using JavaScript. I created the sprite sheets and the map using Piskel and Adobe Illustrator. All the elements in the map resemble everything that can be found in my room in real life. The game features one player-a spitting image of yours truly-and an NPC called Silly Goose. I used the 8-bit remix of 'King of Carrot Flowers' by Neutral Milk Hotel as the background music (one of my favorites)
 
-## Output
+## How to play:
 
-You can actually play it right here within the blog (but it only runs on a 'puter):
+1. Walk up to the goose (use the arrow keys to move the player).
+2. Position the player so it is facing the goose.
+3. Press Enter.
+
+You can actually play it right here within the blog (but it only runs on a 'puter). You need to exit the game to access other areas of this website (sorry):
 
 <GameBoyEmbed
   src="https://creativebinbag.github.io/Silly-Goose-Portfolio/"
   title="Silly Goose RPG"
 />
-
-## How it works
-
-The movement logic is grid-based. Here is a snippet of the collision detection:
-
-```javascript
-function checkCollision(x, y) {
-  if (map[y][x] === 1) {
-    return true; // Wall hit!
-  }
-  return false;
-}
-```
