@@ -16,7 +16,7 @@ const sortedPosts = posts.sort(
     <div class="md:col-span-4 flex justify-center md:justify-start">
       <div class="relative group">
         <div
-          class="absolute -inset-2 bg-p-mint rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"
+          class="absolute -inset-2 bg-white rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"
         >
         </div>
         <img
@@ -30,7 +30,7 @@ const sortedPosts = posts.sort(
     <div class="md:col-span-8">
       <PixelCard class="h-full flex flex-col justify-center">
         <h2
-          class="font-pixel text-4xl mb-6 text-gba-text dark:text-p-mint border-b-4 border-p-pink inline-block pb-1"
+          class="font-pixel text-4xl mb-6 text-gba-text dark:text-white border-b-4 border-p-yellow inline-block pb-1"
         >
           Good Day.
         </h2>
@@ -91,7 +91,7 @@ const sortedPosts = posts.sort(
               <div class="flex gap-2 mt-3">
                 {post.data.tags &&
                   post.data.tags.map((tag) => (
-                    <span class="text-sm uppercase tracking-wider font-bold text-p-blue dark:text-p-mint font-pixel bg-p-blue/10 dark:bg-p-mint/10 px-3 py-1 rounded-sm">
+                    <span class="text-sm uppercase tracking-wider font-bold text-p-blue dark:text-p-yellow font-pixel bg-p-blue/10 dark:bg-p-mint/10 px-3 py-1 rounded-sm">
                       [{tag}]
                     </span>
                   ))}
